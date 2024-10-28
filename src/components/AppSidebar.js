@@ -36,9 +36,10 @@ const AppSidebar = () => {
       }}
     >
       <CSidebarHeader className="border-bottom">
-        <CSidebarBrand to="/">
-          <CIcon customClassName="sidebar-brand-full" icon={logo} height={32} />
-          <CIcon customClassName="sidebar-brand-narrow" icon={sygnet} height={32} />
+        <CSidebarBrand to="/" className="text-decoration-none ">
+          <p className="text-uppercase text-white mb-0 fw-bold fs-5 text-decoration-none ">
+            Disaster Recovery
+          </p>
         </CSidebarBrand>
         <CCloseButton
           className="d-lg-none"
