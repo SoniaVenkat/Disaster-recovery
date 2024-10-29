@@ -30,7 +30,7 @@ const Login = () => {
         body: JSON.stringify({ username, password }),
       });
       if (response.ok) {
-        navigate('/dashboard');
+        navigate('/cloudlogin'); 
       } else {
         setError('Invalid username or password');
         setTimeout(() => setError(''), 3000);
