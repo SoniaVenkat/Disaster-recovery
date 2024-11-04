@@ -1,5 +1,6 @@
 import React from 'react'
 import CIcon from '@coreui/icons-react'
+
 import {
   cilBell,
   cilCalculator,
@@ -20,7 +21,7 @@ const _nav = [
     component: CNavItem,
     name: 'Dashboard',
     to: '/dashboard',
-    icon: <CIcon icon={cilSpeedometer} customClassName="nav-icon" />,
+    // icon: <CIcon icon={cilSpeedometer} customClassName="nav-icon" />,
     // badge: {
     //   color: 'info',
     //   text: 'NEW',
@@ -274,27 +275,27 @@ const _nav = [
   // },
   {
     component: CNavItem,
-    name: 'Inventroy',
+    name: 'Inventory',
     to: '/inventory',
-    icon: <CIcon icon={cilSpeedometer} customClassName="nav-icon" />,
+    // icon: <img src={teams}></img>,
   },
   {
     component: CNavItem,
     name: 'Capacity Planning',
     to: '/capacity',
-    icon: <CIcon icon={cilStar} customClassName="nav-icon" />,
+    // icon: <img src={teams}></img>,
   },
   {
     component: CNavItem,
     name: 'Replication',
     to: '/replication',
-    icon: <CIcon icon={cilStar} customClassName="nav-icon" />,
+    // icon: <img src={teams}></img>,
   },
   {
     component: CNavItem,
     name: 'Teams',
     to: '/teams',
-    icon: <CIcon icon={cilStar} customClassName="nav-icon" />,
+    // icon: <img src={teams}></img>,
   },
   // {
   //   component: CNavGroup,

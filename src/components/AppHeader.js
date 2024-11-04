@@ -13,6 +13,7 @@ import {
   CNavLink,
   CNavItem,
   useColorModes,
+  CButton,
 } from '@coreui/react'
 import CIcon from '@coreui/icons-react'
 import {
@@ -131,8 +132,11 @@ const AppHeader = () => {
           <AppHeaderDropdown />
         </CHeaderNav>
       </CContainer>
-      <CContainer className="px-4" fluid>
+      <CContainer className="px-4 py-2" fluid>
         <AppBreadcrumb />
+        <CButton color="primary" href="/cloudlogin">
+          Switch to another cloud
+        </CButton>
       </CContainer>
     </CHeader>
   )
