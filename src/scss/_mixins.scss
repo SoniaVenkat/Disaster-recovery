@@ -1,0 +1,7 @@
+@mixin ltr-rtl($property, $value) {
+    #{$property}: $value;
+  }
+  @mixin transition($properties, $duration: 0.3s, $easing: ease, $delay: 0s) {
+    transition: $properties $duration $easing $delay;
+  }
+  
