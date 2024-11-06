@@ -7,7 +7,7 @@ on:
     branches: ["development"]
 
 jobs:
- Swiftsign:
+  DRD-Dev:
     runs-on: ubuntu-latest
 
     steps:
@@ -28,6 +28,18 @@ jobs:
 
       - name: Build app
         run: npm run build
+
+      - name: Upload build artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: build-artifact
+          path: build/
+
+      - name: Download build artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: build-artifact
+          path: build/
 
       - name: Upload to S3
         uses: jakejarvis/s3-sync-action@master
