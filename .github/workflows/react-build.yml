@@ -1,4 +1,4 @@
-name: Swift-Sign Application
+name: DR-Dashboard
 
 on:
   push:
