@@ -53,8 +53,49 @@ import avatar6 from 'src/assets/images/avatars/6.jpg'
 import WidgetsBrand from '../widgets/WidgetsBrand'
 import WidgetsDropdown from '../widgets/WidgetsDropdown'
 import MainChart from './MainChart'
+import { useMsal } from '@azure/msal-react';
+import { useEffect, useState } from 'react';
+
 
 const Dashboard = () => {
+  const { instance, accounts } = useMsal();
+  const [accessToken, setAccessToken] = useState(null);
+
+  const request = {
+    scopes: ["User.Read"],  // Adjust scopes as necessary
+    account: accounts[0]
+  };
+
+  const getToken = async () => {
+    try {
+      const response = await instance.acquireTokenSilent(request);
+      setAccessToken(response.accessToken);
+    } catch (error) {
+      if (error instanceof InteractionRequiredAuthError) {
+        try {
+          const response = await instance.acquireTokenPopup(request);
+          setAccessToken(response.accessToken);
+        } catch (popupError) {
+          console.error("Popup token acquisition failed: ", popupError);
+        }
+      } else {
+        console.error("Token acquisition failed: ", error);
+      }
+    }
+  };
+
+  useEffect(() => {
+    getToken();
+  }, []);
+
+  useEffect(() => {
+    if (accessToken) {
+      console.log("Access token:", accessToken);
+      // Use the accessToken for API calls as needed
+    }
+  }, [accessToken]);
+
+
   const progressExample = [
     { title: 'Visits', value: '29.703 Users', percent: 40, color: 'success' },
     { title: 'Unique', value: '24.093 Users', percent: 20, color: 'info' },
@@ -170,7 +211,7 @@ const Dashboard = () => {
 
                     <CTableHeaderCell className="bg-body-tertiary text-center">
                       Resource Type
-                    </CTableHeaderCell>
+                    </CTableHeaderCell>   
                     <CTableHeaderCell className="bg-body-tertiary text-center">
                       Resource Name
                     </CTableHeaderCell>
@@ -181,8 +222,8 @@ const Dashboard = () => {
                       End Time
                     </CTableHeaderCell>
                     <CTableHeaderCell className="bg-body-tertiary">Time Taken</CTableHeaderCell>
-                  </CTableRow>
-                </CTableHead>
+                  </CTableRow>    
+                </CTableHead>   
                 <CTableBody>
                   {tableExample.map((item, index) => (
                     <CTableRow v-for="item in tableItems" key={index}>

@@ -6,6 +6,7 @@ import { CSpinner, useColorModes } from '@coreui/react'
 import './scss/style.scss'
 import Inventory from './components/Inventory'
 
+
 // Containers
 const DefaultLayout = React.lazy(() => import('./layout/DefaultLayout'))
 
@@ -44,12 +45,13 @@ const App = () => {
         }
       >
         <Routes>
-          <Route path="/" name="Login Page" element={<Login />} />
+          {/* <Route path="/" name="Login Page" element={<Login />} /> */}
+          <Route path="/" name="Cloud Login" element={<Cloudlogin />} />
           <Route exact path="/register" name="Register Page" element={<Register />} />
           <Route exact path="/404" name="Page 404" element={<Page404 />} />
           <Route exact path="/500" name="Page 500" element={<Page500 />} />
           
-          <Route exact path="/cloudlogin" name="Cloud Login" element={<Cloudlogin />} />
+         
           <Route path="*" name="Home" element={<DefaultLayout />} />
         </Routes>
       </Suspense>

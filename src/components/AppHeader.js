@@ -24,10 +24,12 @@ import {
   cilMenu,
   cilMoon,
   cilSun,
+  cilAccountLogout,
 } from '@coreui/icons'
 
 import { AppBreadcrumb } from './index'
 import { AppHeaderDropdown } from './header/index'
+import { msalInstance } from './../msalConfig' // Import MSAL instance
 
 const AppHeader = () => {
   const headerRef = useRef()
@@ -35,6 +37,14 @@ const AppHeader = () => {
 
   const dispatch = useDispatch()
   const sidebarShow = useSelector((state) => state.sidebarShow)
+
+  const handleLogout = () => {
+    msalInstance.logoutRedirect({
+      postLogoutRedirectUri: window.location.origin,
+    }).catch((error) => {
+      console.error('Logout failed:', error)
+    })
+  }
 
   useEffect(() => {
     document.addEventListener('scroll', () => {
@@ -58,12 +68,6 @@ const AppHeader = () => {
               Dashboard
             </CNavLink>
           </CNavItem>
-          {/* <CNavItem>
-            <CNavLink href="#">Users</CNavLink>
-          </CNavItem>
-          <CNavItem>
-            <CNavLink href="#">Settings</CNavLink>
-          </CNavItem> */}
         </CHeaderNav>
         <CHeaderNav className="ms-auto">
           <CNavItem>
@@ -130,6 +134,10 @@ const AppHeader = () => {
             <div className="vr h-100 mx-2 text-body text-opacity-75"></div>
           </li>
           <AppHeaderDropdown />
+          <CButton color="secondary" className="ms-3" onClick={handleLogout}>
+            <CIcon icon={cilAccountLogout} className="me-2" />
+            Logout
+          </CButton>
         </CHeaderNav>
       </CContainer>
       <CContainer className="px-4 py-2" fluid>
