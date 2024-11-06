@@ -34,6 +34,7 @@ const App = () => {
 
     setColorMode(storedTheme)
   }, []) // eslint-disable-line react-hooks/exhaustive-deps
+  console.log(import.meta.env.VITE_API_URL) // "123"
 
   return (
     <BrowserRouter>
